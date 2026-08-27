@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VOD 가편집 보조 도구 - ChannelDNA Studio</title>
-  <meta name="description" content="방송 VOD의 음향 에너지를 분석하여 무음 구간을 절삭하고, 화자별 자막 트랙이 분리된 FCP7 XML 시퀀스를 생성하는 편집 보조 소프트웨어">
+  <title>유튜브 리듬 프로파일링 및 컷편집 도구 - ChannelDNA Studio</title>
+  <meta name="description" content="유튜버의 편집 리듬을 프로파일링하여 영상을 자동 컷편집하고, 시퀀스에 100% 동기화된 SRT 자막을 생성하는 AI 도구">
   <style>
     :root {
       --bg-main: #0a0d14;
@@ -780,7 +780,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-badge">
-        <span>⚙️</span> 방송 VOD 무음 컷팅 및 FCP7 XML 시퀀스 생성 도구
+        <span>⚙️</span> 유튜브 리듬 프로파일링 및 맞춤형 가편집 도구
       </div>
       <h1 class="hero-title">
         장시간 방송 VOD 가편집을 위한<br>
@@ -801,17 +801,17 @@
     <!-- Feature Pillars -->
     <section class="value-grid">
       <div class="value-card">
-        <div class="value-icon">✂️</div>
-        <div class="value-title">무음 구간 자동 컷팅</div>
+        <div class="value-icon">🎯</div>
+        <div class="value-title">유튜브 맞춤형 프로파일링</div>
         <div class="value-desc">
-          오디오 파형의 음향 에너지 레벨(RMS)을 분석하여 발화가 없는 침묵 및 대기 구간을 자동으로 절삭하고 유의미한 발화 클립을 연결합니다.
+          원하는 유튜버의 링크를 넣으면 딥러닝 모델이 발화 템포와 무음 허용치(텐션)를 분석하여 내 영상에 똑같이 적용할 수 있는 프로필을 생성합니다.
         </div>
       </div>
       <div class="value-card">
-        <div class="value-icon">🔀</div>
-        <div class="value-title">화자별 독립 자막 레이어</div>
+        <div class="value-icon">💬</div>
+        <div class="value-title">100% 시퀀스 동기화 자막</div>
         <div class="value-desc">
-          음성 발화 특성을 분석하여 메인 화자(V2), 게스트 1(V3), 게스트 2(V4)로 구분된 개별 텍스트 제너레이터 클립을 배치합니다.
+          원본 영상 기준이 아닌, 무수히 쪼개지고 잘려나간 가편집 타임라인 컷 길이에 수학적으로 완벽하게 들어맞는 SRT 자막을 생성합니다.
         </div>
       </div>
       <div class="value-card">
@@ -935,18 +935,18 @@
           <!-- Result Banner -->
           <div class="result-banner" id="result-box">
             <div style="font-weight: 700; color: #6ee7b7; font-size: 14px; margin-bottom: 4px;">
-              가편집 시퀀스 및 XML/SRT 파일 생성이 완료되었습니다.
+              [하이텐션 게임 방송 스타일] 프로필 기반 가편집 및 자막 생성이 완료되었습니다!
             </div>
             <div style="font-size: 12px; color: #d1fae5; line-height: 1.6;">
-              • 원본 방송 4시간 12분 중 무음 구간 절삭 완료 (가편집 분량: 1시간 18분)<br>
-              • 화자별 자막 트랙: V2(메인 화자), V3(게스트 1), V4(게스트 2) 분리 배치<br>
-              • 생성된 XML을 비선형 편집기(NLE)로 가져와 본편집을 진행할 수 있습니다.
+              • 해당 유튜버의 텐션 리듬을 적용하여 원본 영상(4h 12m)을 1시간 18분으로 압축했습니다.<br>
+              • 화자별 자막 트랙 분리 및 컷편집 타임라인에 100% 동기화된 SRT 자막이 생성되었습니다.<br>
+              • 출력된 XML과 SRT를 Premiere Pro/DaVinci Resolve에 드래그하여 바로 본편집을 시작하세요.
             </div>
             <button type="button" class="btn-open-folder" onclick="showFolderTooltip()">
-              <span>📂</span> 생성된 가편집 폴더 확인
+              <span>📂</span> 생성된 출력물 폴더(XML, SRT) 열기
             </button>
             <div id="folder-tooltip-msg" style="font-size: 11px; color: #a7f3d0; margin-top: 6px; display: none;">
-              📌 프로젝트 하위 <code>/output/20260826_생방송_풀버전/</code> 디렉토리에 XML과 SRT가 저장되었습니다.
+              📌 원본 영상과 같은 위치에 <code>20260826_생방송_풀버전.xml</code>, <code>.fcpxml</code>, <code>_자막.srt</code>가 저장되었습니다.
             </div>
           </div>
         </div>
@@ -1366,7 +1366,7 @@
         } else if (pct === 90) {
           document.getElementById('step-2').classList.remove('active');
           document.getElementById('step-3').classList.add('active');
-          statusLbl.innerText = '[3/3] FCPXML (xmeml v4) 시퀀스 및 SRT 파일 작성 중...';
+          statusLbl.innerText = '[3/3] 타임라인 동기화 자막 및 XML/FCPXML 작성 중...';
         } else if (pct >= 100) {
           clearInterval(interval);
           document.getElementById('step-3').classList.remove('active');
